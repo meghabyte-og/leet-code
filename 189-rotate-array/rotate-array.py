@@ -4,9 +4,7 @@ class Solution:
         Do not return anything, modify nums in-place instead.
         """
         n=len(nums)
-
-        if k>n:
-            k=k%n
-        nums.reverse()
-        nums[0:k]=reversed(nums[0:k])
-        nums[k:n]=reversed(nums[k:n])
+        for i in range(k):
+            t=nums.pop(n-1)
+            nums.insert(0,t)
+        
