@@ -1,13 +1,6 @@
 class Solution:
     def kidsWithCandies(self, candies: List[int], extraCandies: int) -> List[bool]:
         greatest=[]
-        for i in range(len(candies)):
-            candies[i]=candies[i]+extraCandies
-            #print(candies)
-            if candies[i]>=max(candies):
-                greatest.append(True)
-            else:
-                greatest.append(False)
-            candies[i]=candies[i]-extraCandies
-        return greatest
+        m=max(candies) #we only need to check if the max is greater than the max of existing array
+        return[extraCandies+i>=m for i in candies]
         
