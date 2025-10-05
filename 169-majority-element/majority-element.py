@@ -1,9 +1,13 @@
 class Solution:
     def majorityElement(self, nums: List[int]) -> int:
-        unique=[]
-        for i in nums:
-            if i not in unique:
-                unique.append(i)
-        for i in unique:
-            if nums.count(i)>len(nums)//2:
-                return i
+        count=0
+        candidate=nums[0]
+        for i in range(len(nums)):
+            if nums[i]==candidate:
+                count+=1
+            else:
+                count-=1
+            if count==0:
+                candidate=nums[i]
+                count=1
+        return candidate
