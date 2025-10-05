@@ -3,8 +3,13 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
+        
         n=len(nums)
         if k>n:
             k=k%n
-        nums[:]=nums[n-k:n]+nums[:n-k]
-        
+        nums[:]=nums[::-1]
+        print(nums)
+        nums[:k]=nums[:k][::-1]
+        print(nums)
+        nums[k:n]=nums[k:n][::-1]    
+        print(nums)
