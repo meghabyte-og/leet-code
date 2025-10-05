@@ -1,21 +1,10 @@
 class Solution:
     def majorityElement(self, nums: List[int]) -> int:
-        nums.sort()
-        n=[]
-        l=[]
-        for i in nums:
-            if i not in n:
-                n.append(i)
-        for i in n:
-            if nums.count(i)>len(nums)/2:
-                return i
-        
-                
-
-            
-            
-
-                        
-
-
-        
+        count={}
+        for i in range(len(nums)):
+            if nums[i] in count:
+                count[nums[i]]+=1
+            else:
+                count[nums[i]]=0
+        print(max(count))
+        return max(count,key=count.get)
