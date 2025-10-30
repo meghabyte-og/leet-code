@@ -1,12 +1,10 @@
 class Solution:
     def climbStairs(self, n: int) -> int:
-        if n<=2:
+        if n<=3:
             return n
-        else:
-            a=1
-            b=2
-            for i in range(3,n+1):
-                c=a+b
-                a=b
-                b=c
+        a=2
+        b=3
+        for i in range(4,n+1):
+            a,b=b,a+b
+
         return b
