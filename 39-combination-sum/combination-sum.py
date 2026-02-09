@@ -6,22 +6,22 @@ class Solution:
         current=[]
         s=sum(candidates)
         def sub(a,i):
-            if a==target and current[:] not in subsets:
+            if a==target:
                 subsets.append(current[:])
                 return
             if a>target:
                 return
             if i>=n:
                 return
+            sub(a,i+1)
             a=a+candidates[i]
             current.append(candidates[i])
-            sub(a,i+1)
             sub(a,i)
             a=a-candidates[i]
             if current:
                 current.pop()
-            sub(a,i+1)
             
+                    
         sub(a,0)
         return subsets
 
