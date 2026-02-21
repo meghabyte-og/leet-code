@@ -1,14 +1,20 @@
 class Solution:
     def maxArea(self, height: List[int]) -> int:
-        max_vol=0
         i=0
         j=len(height)-1
-        while i<j:
-            volume=min(height[i],height[j])*(j-i)
-            if volume>max_vol:
-                max_vol=volume
+        maxvol=0
+        while i<=j:
+            vol=(j-i)*min(height[i],height[j])
+            if vol>maxvol:
+                maxvol=vol
+        # when to incremenet i and decremenet j?
             if height[i]>height[j]:
                 j=j-1
-            else:
+                continue
+            if height[i]<height[j]:
                 i=i+1
-        return max_vol
+                continue
+            if height[i]==height[j]:
+                i=i+1
+                continue
+        return maxvol
