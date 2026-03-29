@@ -1,25 +1,16 @@
-class Solution:
-    def summaryRanges(self, nums: List[int]) -> List[str]:
-        # if len(nums)==0:
-        #     return []
-        if len(nums)==1:
-            return [str(nums[0])]
-        j=0
-        result=[]
-        for i in range(1,len(nums)):
-            if nums[i-1]!=nums[i]-1:
-                result.append(str(nums[j])+'->'+str(nums[i-1]) if nums[j]!=nums[i-1] else str(nums[j]))
-                j=i
-            if i==len(nums)-1 :
-                result.append(str(nums[j])+'->'+str(nums[i]) if nums[j]!=nums[i] else str(nums[j]))
-        return(result)
-
-
-                
-
-
-            
-            
-            
-            
-
+class Solution(object):
+    def summaryRanges(self, nums):
+        arr=[]
+        i=0
+        while i<len(nums):
+            if nums[i]+1 not in nums:
+                arr.append(str(nums[i]))
+                i=i+1
+            else:
+                a=nums[i]
+                while nums[i]+1 in nums:
+                    i=i+1
+                c=""+str(a)+"->"+str(nums[i])
+                arr.append(c)
+                i=i+1
+        return arr
