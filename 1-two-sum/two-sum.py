@@ -2,9 +2,9 @@ class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         seen={}
         for i in range(len(nums)):
-            c=target-nums[i]
-            if c not in seen:
-                seen[nums[i]]=i
-                continue
-            else:
-                return [seen[c],i]
+            comp=target-nums[i]
+            # print(seen,comp)
+            if comp in seen:
+                return [i,seen[comp]]
+            seen[nums[i]]=i
+        return []
