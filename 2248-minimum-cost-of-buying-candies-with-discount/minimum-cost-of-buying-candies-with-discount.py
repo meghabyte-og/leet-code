@@ -11,5 +11,3 @@ class Solution:
             flag +=1 
             total += cost[i]
         return total
-                
-            
