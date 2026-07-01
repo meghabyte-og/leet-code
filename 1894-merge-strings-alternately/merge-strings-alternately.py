@@ -1,15 +1,12 @@
 class Solution:
     def mergeAlternately(self, word1: str, word2: str) -> str:
-        list_a = list(word1)
-        list_b = list(word2)
-        a=len(word1)
-        b=len(word2)
-        merged=list()
-        for i in range(a if a>b else b):
-            if i<a:
-                merged.append(list_a[i])
-            if i<b:
-                merged.append(list_b[i])
-        merged=''.join(merged)
-        #print(merged)
-        return(merged)
+        answer = ""
+        m = len(word1)
+        n = len(word2)
+        for i in range(min(m,n)):
+            answer = answer + word1[i]
+            answer = answer + word2[i]
+        
+        answer = answer + (word1[n:] if m > n else word2[m:])
+        return answer
+        
