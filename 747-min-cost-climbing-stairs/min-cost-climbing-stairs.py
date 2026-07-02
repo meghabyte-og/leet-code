@@ -3,7 +3,6 @@ class Solution:
         first = cost[0]
         second = cost[1]
         for i in range(2, len(cost)):
-            curr = cost[i] + min(first, second)
-            first = second
-            second = curr
+            first, second = second, min(first, second) + cost[i]
         return min(first, second)
+            
