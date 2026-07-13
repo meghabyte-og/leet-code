@@ -7,7 +7,6 @@ class Solution:
                 integer += roman[s[i]]
             else: 
                 integer -= roman[s[i]]
-            # print(integer)
         return integer
             
 
