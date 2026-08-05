@@ -7,11 +7,24 @@ class Solution:
             adj[i].append(j)
             adj[j].append(i)
         visited = set()
-        def dfs(node):
-            visited.add(node)
-            for neighbor in adj[node]:
+
+        #dfs
+        # def dfs(node):
+        #     visited.add(node)
+        #     for neighbor in adj[node]:
+        #         if neighbor not in visited:
+        #             dfs(neighbor)
+        # dfs(source)
+
+        #bfs
+        q = deque()
+        q.append(source)
+        visited.add(source)
+        while q:
+            curr = q.popleft()
+            for neighbor in adj[curr]:
                 if neighbor not in visited:
-                    dfs(neighbor)
-        dfs(source)
+                    visited.add(neighbor)
+                    q.append(neighbor)
         return destination in visited
             
