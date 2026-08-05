@@ -18,10 +18,11 @@ class Solution:
                     ans = dfs(neighbor)
                     if ans == False:
                         return False
-                    currpath.remove(neighbor)
                 else:
                     if neighbor in currpath:
                         return False
+
+            currpath.remove(node)
             return True
         
         for c in range(numCourses):
@@ -29,8 +30,6 @@ class Solution:
                 ans = dfs(c)
                 if ans == False:
                     return False
-                if c in currpath:
-                    currpath.remove(c)
         return True
             
                     
