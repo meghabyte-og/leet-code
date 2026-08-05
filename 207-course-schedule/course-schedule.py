@@ -1,38 +1,37 @@
 class Solution:
-    def canFinish(self, numCourses: int, pre: List[List[int]]) -> bool:
+    def canFinish(self, numCourses: int, prerequisites : List[List[int]]) -> bool:
         adj = dict()
         for i in range(numCourses):
             adj[i] = []
-        for i,j in pre:
+        for i,j in prerequisites :
+            if i == j:
+                return False
             adj[i].append(j)
-
+        
         visited = set()
         currpath = set()
-        
         def dfs(node):
             visited.add(node)
             currpath.add(node)
 
-            for neighbor in adj[node]:
-                if neighbor not in visited:
-                    ans = dfs(neighbor)
+            for i in adj[node]:
+                if i not in visited:
+                    ans = dfs(i)
                     if ans == False:
                         return False
-                else:
-                    if neighbor in currpath:
-                        return False
-
+                else: #i s in visited
+                    if i in currpath: #i is in visited and currpath
+                        return False                    
             currpath.remove(node)
             return True
         
-        for c in range(numCourses):
-            if c not in visited:
-                ans = dfs(c)
+
+        for i in range(numCourses):
+            if i not in visited:
+                ans = dfs(i)
                 if ans == False:
                     return False
         return True
-            
-                    
-        
 
-                
+        
+        
