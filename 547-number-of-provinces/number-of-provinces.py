@@ -1,32 +1,32 @@
 class Solution:
     def findCircleNum(self, isConnected: List[List[int]]) -> int:
-        n = len(isConnected) 
-        adj = []
-        print(adj)
+        adj = dict()
+        n = len(isConnected)
         for i in range(n):
-            curr = []
-            for j in range(len(isConnected[i])):
-                if i == j :
+            adj[i] = []
+            for j in range(n):
+                if i == j:
                     continue
                 if isConnected[i][j] == 1:
-                    curr.append(j)
-            adj.append(curr)
+                    adj[i].append(j) 
 
         visited = set()
-        def dfs(curr):
-            nonlocal visited
-            if curr in visited:
-                return 
-            visited.add(curr)
-            for neighbor in adj[curr]:
-                dfs(neighbor)
-        result = 0
+        def dfs(node):
+            visited.add(node)
+            for neighbor in adj[node]:
+                if neighbor not in visited:
+                    dfs(neighbor)
+            return
+        
+        count = 0
         for i in range(n):
             if i not in visited:
+                count += 1
                 dfs(i)
-                result += 1
-        return result
-
+        return count
+            
+            
 
         
+
                 
