@@ -1,27 +1,23 @@
 class Solution:
     def minReorder(self, n: int, connections: List[List[int]]) -> int:
-        undirected = dict()
-        directed = dict()
-        for i in range(n):
-            undirected[i] = []
-            directed[i] = set()
-        for i, j in connections:
-            undirected[i].append(j)
-            undirected[j].append(i)
+        directed = {i: set() for i in range(n)}
+        undirected = {i: set() for i in range(n)}
+
+        for i,j in connections:
             directed[i].add(j)
+            undirected[i].add(j)
+            undirected[j].add(i)
         
-        count = 0
-        q = deque()
-        q.append(0)
         visited = set()
-        visited.add(0)
-        while q:
-            curr = q.popleft()
-            for i in undirected[curr]:
-                if i not in visited:
-                    visited.add(i)
-                    q.append(i)
-                    if i in directed[curr]:
-                        count += 1
-       
-        return count
+        count = [0]
+
+        def dfs(node):
+            visited.add(node)
+            for neighbor in undirected[node]:
+                if neighbor not in visited:
+                    if neighbor in directed[node]:
+                        count[0] +=1 
+                    dfs(neighbor)
+        dfs(0)
+        return count[0]
+        
