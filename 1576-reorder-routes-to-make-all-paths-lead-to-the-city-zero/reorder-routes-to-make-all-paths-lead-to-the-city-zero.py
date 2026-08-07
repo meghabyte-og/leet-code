@@ -4,11 +4,11 @@ class Solution:
         directed = dict()
         for i in range(n):
             undirected[i] = []
-            directed[i] = []
+            directed[i] = set()
         for i, j in connections:
             undirected[i].append(j)
             undirected[j].append(i)
-            directed[i].append(j)
+            directed[i].add(j)
         
         count = 0
         q = deque()
