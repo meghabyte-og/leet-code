@@ -1,14 +1,17 @@
 class Solution:
     def findCircleNum(self, isConnected: List[List[int]]) -> int:
-        adj = dict()
+
         n = len(isConnected)
-        for i in range(n):
-            adj[i] = []
-            for j in range(n):
-                if i == j:
+        adj = {}
+        for node in range(n):
+            adj[node] = []
+            for connection in range(n):
+                if node == connection: 
                     continue
-                if isConnected[i][j] == 1:
-                    adj[i].append(j) 
+                if isConnected[node][connection] == 1:
+                    adj[node].append(connection)
+        
+        print(adj)
 
         visited = set()
         def dfs(node):
@@ -16,17 +19,12 @@ class Solution:
             for neighbor in adj[node]:
                 if neighbor not in visited:
                     dfs(neighbor)
-            return
         
         count = 0
-        for i in range(n):
+
+        for i in range(len(isConnected)):
             if i not in visited:
                 count += 1
                 dfs(i)
-        return count
-            
-            
-
         
-
-                
+        return count
