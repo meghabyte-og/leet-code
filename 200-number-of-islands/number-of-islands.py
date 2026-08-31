@@ -1,37 +1,40 @@
 class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
-        visited = set()
-        m = len(grid)
-        n = len(grid[0])
-        directions = [(0,1), (0,-1), (1,0), (-1,0)]
-        visited = [[0]*n for _ in range(m)]
-        count = 0
-        def dfs(i,j) -> int:
-            if i<0 or j<0 or i>=m or j>=n:
-                return 
+
+        def isValid(i,j):
+            if i < 0 or j < 0 or i >= len(grid) or j >= len(grid[0]):
+                return False
             if grid[i][j] == '0':
+                return False
+            if visited[i][j] == 1:
+                return False
+            return True
+
+        directions = [[1,0],[-1,0],[0,1],[0,-1]]
+        visited = [[0]*len(grid[0]) for _ in range(len(grid))] 
+
+        def dfs(i, j):
+            if not isValid(i,j) :
                 return 
-            if visited[i][j]:
-                return 
+
             visited[i][j] = 1
+
             for di, dj in directions:
                 ni = i + di
                 nj = j + dj
-                if ni<0 or nj<0 or ni>=m or nj>=n:
-                    continue
-                if visited[ni][nj]:
-                    continue
-                if grid[i][j] == '0':
-                    continue
-                dfs(ni,nj)
+
+                if isValid(ni, nj):
+                    dfs(ni, nj)
+        
+        count = 0
+        
+        for row in range(len(grid)):
+            for col in range(len(grid[0])):
+                if isValid(row, col):
+                    count += 1 
+                    dfs(row, col)
+
+        return count
             
-        for i in range(m):
-            for j in range(n):
-                if not visited[i][j] and grid[i][j] == '1':
-                    dfs(i,j)
-                    count +=1 
-        return count 
-            
-                
-            
+
             
