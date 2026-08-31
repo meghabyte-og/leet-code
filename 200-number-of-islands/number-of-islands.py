@@ -23,8 +23,7 @@ class Solution:
                 ni = i + di
                 nj = j + dj
 
-                if isValid(ni, nj):
-                    dfs(ni, nj)
+                dfs(ni, nj)
         
         count = 0
         
