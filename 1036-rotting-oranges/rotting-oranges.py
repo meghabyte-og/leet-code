@@ -15,7 +15,7 @@ class Solution:
                     fresh += 1
         
         directions = [(1, 0), (-1, 0), (0, 1), (0, -1)]
-        minutes = 0
+        time = 0
 
         def isValid(i, j):
             if not 0 <= i < rows:
@@ -26,8 +26,6 @@ class Solution:
 
         while q:
             i, j, time = q.popleft()
-
-            minutes = time    
         
             for di, dj in directions:
                 ni, nj = i + di, j + dj
@@ -38,7 +36,7 @@ class Solution:
                         fresh -= 1
                         q.append((ni,nj,time+1))
         
-        return minutes if fresh == 0 else -1
+        return time if fresh == 0 else -1
 
 
                 
